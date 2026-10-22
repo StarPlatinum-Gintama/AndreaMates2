@@ -13,8 +13,6 @@ public class NewMonoBehaviourScript : MonoBehaviour
 
     }
 
-
-
     void ContarC()
     {
         //Contar las veces que una cifra c aparece en un entero no negativo n. (Pista: piensa cuál es el resultado de 1234 % 10)
@@ -58,6 +56,24 @@ public class NewMonoBehaviourScript : MonoBehaviour
     {
         //Mostrar en consola las cifras de un número entero no negativo n en orden natural (de menor a mayor), uno en cada línea.
 
+        int n = 3124;
+        int auxN = n;
+        
+        int digitoFinal = 0;
+        
+
+        while (auxN>0)
+        {
+            digitoFinal = auxN % 10;
+
+            if (digitoFinal == 0)
+            {
+               Debug.Log (digitoFinal);
+            }
+
+
+           auxN = auxN / 10;
+        }
 
 
     }
