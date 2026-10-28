@@ -45,9 +45,9 @@ public class Ej_Recursividad : MonoBehaviour
 
         // 7.Mostrar en la consola los elementos de un vector no ordenado v en orden inverso(del último al primero), uno en cada línea.
         int[] vec8 = new int[3] { 1, 2, 3 };
-        int iter8 = vec8.Length;
+        int iter8 = vec8.Length - 1;
 
-      
+
 
         ComponentesVectorInversos(vec8, iter8);
 
@@ -127,14 +127,14 @@ public class Ej_Recursividad : MonoBehaviour
     string ComponentesVectorOrdenados(int[] v, int i)
     {
         /*
-            // Mostrar en la consola los elementos de un vector no ordenado v en orden natural(del primero al último), uno en cada línea.
+            // 6.Mostrar en la consola los elementos de un vector no ordenado v en orden natural(del primero al último), uno en cada línea.
         int[] vector = new int[3] { 1, 2, 3 };
         int iterador = 0;
 
         ComponentesVectorOrdenados(vector, iterador);
 
         */
-
+            
         if (i >= v.Length) return null;
 
         else
@@ -149,7 +149,7 @@ public class Ej_Recursividad : MonoBehaviour
         /*
             // 7.Mostrar en la consola los elementos de un vector no ordenado v en orden inverso(del último al primero), uno en cada línea.
         int[] vec8 = new int[3] { 1, 2, 3 };
-        int iter8 = vec8.Length;
+        int iter8 = vec8.Length-1;
 
         ComponentesVectorInversos(vec8, iter8);
        
@@ -162,43 +162,55 @@ public class Ej_Recursividad : MonoBehaviour
         else
         {
             //Ojo pq el vector tiene 3 componentes pero v[3] no existe (van de 0 a 2), por eso daba error
-            Debug.Log("El componente " + (i) + " del vector es " + v[i-1]);
+            Debug.Log("El componente " + (i) + " del vector es " + v[i - 1]);
             return ComponentesVectorInversos(v, i - 1);
         }
+    }
 
-        int VecMenorMayor(int[] v, int i)
-        {
-            // 8.Averiguar si un vector no vacío v está ordenado de menor a mayor.
-            //No vacio significa que NO estan todos sus componentes a 0.
+    bool VecMenorMayor(int[] v, int i)
+    {
+        // 8.Averiguar si un vector no vacío v está ordenado de menor a mayor. {1,2,3} i = 0
+        //No vacio significa que NO estan todos sus componentes a 0.
 
-            return 0;
-        }
-          
-        int ElemMenor(int[] v, int i)
-        {
-            // 9.Encontrar el menor elemento en un vector no ordenado y no vacío v.
+        if (i > v.Length - 1 || i > v.Length - 2) return true; //Si llega al final  
 
-            return 0;
-        }
-       
-        bool MayorqD(int[] v, int d, int i)
-        {
-            // 10.Averiguar si todos los elementos de un vector no ordenado y no vacío v son mayores que un dato d
+        if (v[i] <= v[i + 1]) return VecMenorMayor(v, i + 1);
 
-            if (i >= 0) return v[i] <= d;
+        return false;
 
-            else if (v[i] <= d)
-            {
-                return false;
-            }
-            else
-            {
-                return MayorqD(v, d, i + 1);
-            }
-        }
+       /* if (i > v.Length - 1) return true; //Si llega al final significa q si están ordenados
 
+        if (v[i] >= v[i - 1]) return VecMenorMayor(v, i - 1);
         
+        return false;*/
+    }
 
+
+    int ElemMenor(int[] v, int i, int aux)
+    {
+        // 9.Encontrar el menor elemento en un vector no ordenado y no vacío v.
+        // el aux q recibimos será un int muy grande
+
+        if (i > v.Length - 1) return aux;
+        if (v[i] < aux) aux = v[i];
+    
+        return ElemMenor(v, i+1, aux);
+    }
+
+    bool MayorqD(int[] v, int d, int i)
+    {
+        // 10.Averiguar si todos los elementos de un vector no ordenado y no vacío v son mayores que un dato d
+
+        if (i > v.Length - 1) return true;
+
+        if (v[i] <= d) return false;
+      
+        return MayorqD(v, d, i + 1);
         
     }
+
+
+
+
 }
+
